@@ -15,32 +15,36 @@ const API_KEY = 'AIzaSyCI2x6AnG3feoIxAHjH01ZHVGB5S5c-YnA';  // Replace with your
 const SPREADSHEET_ID = '1NOtkg9E8IdGX6CC58ve4uluFb1oBFl0nG0x3sLUrZq8';  // Replace with your spreadsheet ID.
 const SHEET_NAME = 'Form Responses 1';  // Replace with your sheet name if different.
 
-fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.values);  // This will log the values in the sheet.
-    })
-    .catch(error => console.error('Error fetching data:', error));
-
-console.log(data.values);
-
-
-const rows = data.values;  // This is from the previous example
+// const rows = data.values;  // This is from the previous example
 const targetValue = "50";  // Replace with the value you want to match
 
 let found = false;
 
-for (let i = 0; i < rows.length; i++) {
-    if (rows[i][1] === targetValue) {  // Checking the second column of each row
-        console.log(`Match found in row ${i + 1}`);
-        found = true;
-        break;
-    }
-}
 
-if (!found) {
-    console.log("No match found.");
-}
+fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.values);  // This will log the values in the sheet.
+
+       for (let i = 0; i < data.values.length; i++) {
+           if (data.values[i][1] === targetValue) {  // Checking the second column of each row
+               console.log(`Match found in row ${i + 1}`);
+               found = true;
+               break;
+           }
+       }
+
+       if (!found) {
+           console.log("No match found.");
+       } 
+
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+
+
+
+
 
 
 
