@@ -1,11 +1,119 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello <span id="name">World</span></h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
-</html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Senior Citizen Membership</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="text-center ">
+            <img src="/image/face.jpg" alt="Header Image" class="img-fluid">
+        </div><br>
+        <form>
+            <table class="table table-bordered table table-striped table-hover">
+                <tbody>
+                    <tr>
+                        <td><label for="reg_no">Registration No.:</label></td>
+                        <td><span id="reg_no"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name">Name:</label></td>
+                        <td><span id="name"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="dob">Date of Birth:</label></td>
+                        <td><span id="dob"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name">Father's/Husband's Name:</label></td>
+                        <td><span id="guardian_name"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="address">Address:</label></td>
+                        <td><span id="address"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="contactNo">Contact No:</label></td>
+                        <td><span id="contact_no"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email Id:</label></td>
+                        <td><span id="email"></span></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="livingWith">Staying With:</label></td>
+                        <td><span id="staying_with"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="aadhar">AADHAR:</label></td>
+                        <td><span id="aadhar"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="bloodGroup">Blood Group:</label></td>
+                        <td><span id="blood_group"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="spouseName">Name of Spouse:</label></td>
+                        <td><span id="spouse_name"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="spouseContact">Spouse Contact No:</label></td>
+                        <td><span id="spouse_contact"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="emergencyContact">Emergency Contact:</label></td>
+                        <td><span id="emergency_contact"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="medicalHistory">Medical History:</label></td>
+                        <td><span id="medical_history"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="allergies">Allergies to Medicines:</label></td>
+                        <td><span id="allergies"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="allergyPhysician">Attending Physician (name & No):</label></td>
+                        <td><span id="attending_physician"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="medicalInsurance">Medical Insurance:</label></td>
+                        <td><span id="medical_insurance"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="childName">Child's Name:</label></td>
+                        <td><span id="child_name"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="childEmail">Child's Email Id:</label></td>
+                        <td><span id="child_email"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="childContact">Child's Contact No:</label></td>
+                        <td><span id="child_contact"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="nextOfKin">Next of Kin/Details:</label></td>
+                        <td><span id="kin"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (you may need to adjust versions) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    
+</body>
+
+</html>
 
 <script>
 
@@ -16,7 +124,9 @@ const SPREADSHEET_ID = '1NOtkg9E8IdGX6CC58ve4uluFb1oBFl0nG0x3sLUrZq8';  // Repla
 const SHEET_NAME = 'Form Responses 1';  // Replace with your sheet name if different.
 
 // const rows = data.values;  // This is from the previous example
-const targetValue = "50";  // Replace with the value you want to match
+
+const params = new URLSearchParams(window.location.search);
+const targetValue = params.get('regid');
 
 let found = false;
 
@@ -30,6 +140,27 @@ fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${
            if (data.values[i][1] === targetValue) {  // Checking the second column of each row
                console.log(`Match found in row ${i + 1}`);
                found = true;
+               document.getElementById('reg_no').textContent = data.values[i][1];
+               document.getElementById('name').textContent = data.values[i][2];
+               document.getElementById('dob').textContent = data.values[i][3];
+               document.getElementById('guardian_name').textContent = data.values[i][4];
+               document.getElementById('email').textContent = data.values[i][5];
+               document.getElementById('contact_no').textContent = data.values[i][6];
+               document.getElementById('address').textContent = data.values[i][7];
+               document.getElementById('staying_with').textContent = data.values[i][8];
+               document.getElementById('aadhar').textContent = data.values[i][9];
+               document.getElementById('blood_group').textContent = data.values[i][10];
+               document.getElementById('medical_history').textContent = data.values[i][11];
+               document.getElementById('allergies').textContent = data.values[i][12];
+               document.getElementById('attending_physician').textContent = data.values[i][13];
+               document.getElementById('medical_insurance').textContent = data.values[i][14];
+               document.getElementById('spouse_name').textContent = data.values[i][15];
+               document.getElementById('spouse_contact').textContent = data.values[i][16];
+               document.getElementById('child_name').textContent = data.values[i][17];
+               document.getElementById('child_email').textContent = data.values[i][18];
+               document.getElementById('child_contact').textContent = data.values[i][19];
+               document.getElementById('emergency_contact').textContent = data.values[i][20];
+               document.getElementById('kin').textContent = data.values[i][21];
                break;
            }
        }
