@@ -8,6 +8,22 @@
 
 
 <script>
+
+const API_KEY = 'AIzaSyCI2x6AnG3feoIxAHjH01ZHVGB5S5c-YnA';  // Replace with your API key.
+const SPREADSHEET_ID = '1NOtkg9E8IdGX6CC58ve4uluFb1oBFl0nG0x3sLUrZq8';  // Replace with your spreadsheet ID.
+const SHEET_NAME = 'Form Responses 1';  // Replace with your sheet name if different.
+
+fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.values);  // This will log the values in the sheet.
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+
+
+// AIzaSyCI2x6AnG3feoIxAHjH01ZHVGB5S5c-YnA
+
         // Get the query parameter 'text' from the URL
         const params = new URLSearchParams(window.location.search);
         const name = params.get('text');
@@ -18,3 +34,5 @@
             document.getElementById('name').textContent = name;
         }
 </script>
+
+
