@@ -11,11 +11,15 @@
 <body>
     <div class="container mt-5">
         <div class="text-center ">
-            <img id="myImage" src="/image/face.jpg" alt="Header Image" class="img-fluid">
+            <h1>Senior Citizen Membership Info</h1>
         </div><br>
         <form>
             <table class="table table-bordered table table-striped table-hover">
                 <tbody>
+                    <tr>
+                        <td><label for="reg_no">Photo Link:</label></td>
+                        <td><span id="photo"></span></td>
+                    </tr>
                     <tr>
                         <td><label for="reg_no">Registration No.:</label></td>
                         <td><span id="reg_no"></span></td>
@@ -161,7 +165,7 @@ fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${
                document.getElementById('child_contact').textContent = data.values[i][19];
                document.getElementById('emergency_contact').textContent = data.values[i][20];
                document.getElementById('kin').textContent = data.values[i][21];
-               document.getElementById("myImage").src = data.values[i][22];
+               document.getElementById("photo").textContent = data.values[i][22];
 
                break;
            }
