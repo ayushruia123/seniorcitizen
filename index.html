@@ -18,7 +18,7 @@
                 <tbody>
                     <tr>
                         <td><label for="reg_no">Photo Link:</label></td>
-                        <td><span id="photo"></span></td>
+                        <td><a id="photo_link" href="url">Click to Open</a></td>
                     </tr>
                     <tr>
                         <td><label for="reg_no">Registration No.:</label></td>
@@ -165,7 +165,7 @@ fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${
                document.getElementById('child_contact').textContent = data.values[i][19];
                document.getElementById('emergency_contact').textContent = data.values[i][20];
                document.getElementById('kin').textContent = data.values[i][21];
-               document.getElementById("photo").textContent = data.values[i][22];
+               document.getElementById("photo_link").href = data.values[i][22];
 
                break;
            }
